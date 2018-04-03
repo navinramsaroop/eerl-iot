@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Energy Usage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    var images = [
+      'Resources/PhysicalScienceBuilding.jpeg',
+      'Resources/GatesHall.jpeg',
+      'Resources/HollisterHall.jpeg',
+      'Resources/MilsteinHall.jpg',
+      'Resources/Rhodes.jpeg',
+      'Resources/StockingHall.jpg',
+      'Resources/ThurstonHall.jpeg',
+      'Resources/UpsonHall.jpg',
+
+      'Resources/DuffieldHall.jpg',
+      'Resources/GoldwinSmithHall.jpg',
+      'Resources/OlinLibrary.jpg',
+      'Resources/SneeHall.jpg',
+    ];
+    var titles = [
+      'Physical Science Building',
+      'Gates Hall',
+      'Hollister Hall',
+      'Milstein Hall',
+      'Rhodes Hall',
+      'Stocking Hall',
+      'Thurston Hall',
+      'Upson Hall',
+      'Duffield',
+      'Goldwin Smith Hall',
+      'Olin Library',
+      'Snee Hall'
+    ];
+    var IMAGE_WIDTH = '200';
+    var IMAGE_HEIGHT = '150';
+
+    function loadSpecificPictures() {
+      var page = '';
+      var input = document.getElementById('inputID').value;
+      console.log(input)
+      for (var x = 0; x < images.length; x++) {
+        if (titles[x].toLowerCase().includes(input.toLowerCase())) {
+          page +=
+            '  <div class="col-lg-3"><a hrev="#"><div class="thumbnail"><img class="img-rounded" style="width:' +
+            IMAGE_WIDTH +
+            'px;height:' +
+            IMAGE_HEIGHT +
+            'px;"src=' +
+            images[x] +
+            '></img><div class="caption"><p style="font-size:20px" align="center">' +
+            titles[x] +
+            '  </p> </div></div></a> </div>';
+        }
+      }
+      if (page == '') {
+        page = '<div class="container-fluid"> No results found. </div>'
+      }
+      document.getElementById('imageID').innerHTML = page;
+    }
+
+    $('form').change(function() {
+      console.log('working')
+    }).click(function() {
+      // do something
+    });
+  </script>
+</head>
+
+<body onLoad="loadSpecificPictures();">
+  <div class="container-fluid">
+    <h1>Choose your Cornell Building to see its energy usage.</h1>
+  </div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Cornell University</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <input id="inputID" type="text" class="form-control" placeholder="Search" onkeyup='loadSpecificPictures();'>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+          </div>
+        </form>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row" id="imageID">
+
+    </div>
+  </div>
+</body>
+
+</html>
